@@ -5,7 +5,7 @@ const CreatePost = () => {
     const userId=useRef();
     const title=useRef();
     const body=useRef();
-    const reactions=useRef();
+    const views=useRef();
     const tags=useRef();
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,14 +14,14 @@ const CreatePost = () => {
             userId: userId.current.value,
             title: title.current.value,
             body: body.current.value,
-            reactions: reactions.current.value,
+            views: views.current.value,
             tags: tags.current.value.split(" "),
         }
         addPost(post);
         userId.current.value="";
         title.current.value="";
         body.current.value="";
-        reactions.current.value="";
+        views.current.value="";
         tags.current.value="";
     }
     return (
@@ -41,8 +41,8 @@ const CreatePost = () => {
                 <textarea rows={4} type="text" className="form-control" id="title" aria-describedby="emailHelp" placeholder="Tell me something about your self ..." ref={body} />
             </div>
             <div className="mb-3">
-                <label htmlFor="reactions" className="form-label">Number of Reactions </label>
-                <input type="text" className="form-control" id="reactions" aria-describedby="emailHelp" placeholder="How many people reacted to this post ?" ref={reactions} />
+                <label htmlFor="views" className="form-label">Number of views </label>
+                <input type="text" className="form-control" id="views" aria-describedby="emailHelp" placeholder="How many people reacted to this post ?" ref={views} />
             </div>
             <div className="mb-3">
                 <label htmlFor="tags" className="form-label">Enter your hashtags here </label>
