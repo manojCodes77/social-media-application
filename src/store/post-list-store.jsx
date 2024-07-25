@@ -4,7 +4,6 @@ export const PostList = createContext({
     postList: [],
     addPost: () => { },
     deletePost: () => { },
-    fetching: false,
 });
 
 const reducer = (state, action) => {
@@ -21,8 +20,6 @@ const reducer = (state, action) => {
 
 const PostListProvider = (props) => {
     const [postList, dispatch] = useReducer(reducer, []);
-    
-    const [fetching,setFetching]= useState(false);
 
     const addPost = useCallback((post) => {
         dispatch({ type: "ADD_POST", payload: post });
@@ -35,29 +32,11 @@ const PostListProvider = (props) => {
     const addInitialPosts = useCallback((posts) => {
         dispatch({ type: "ADD_INITIAL_POSTS", payload: posts });
     }, [dispatch]);
-    useEffect(() =>{
-        setFetching(true);
-        const controller = new AbortController();
-        const signal = controller.signal;
-        fetch('https://dummyjson.com/posts', {signal})
-            .then(res => res.json())
-            .then((data) =>{
-                addInitialPosts(data.posts);
-                setFetching(false);
-            });
-
-            return () => {
-                console.log('cleanup');
-                controller.abort();
-            }
-        }, []);
-
     return (
         <PostList.Provider value={{
             postList,
             addPost,
             deletePost,
-            fetching,
         }}>
             {props.children}
         </PostList.Provider>
