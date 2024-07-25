@@ -10,7 +10,7 @@ const PostList = () => {
             <h1 className="text-center text-3xl text-rose-200 my-2">ALL POSTS</h1>
             {fetching && <LoadingSpinner />}
             {!fetching && postList.length === 0 && <WelcomeMessage />}
-            {!fetching && <div className="flex flex-row flex-wrap-reverse justify-center ">
+            {!fetching && <div className="flex flex-row flex-wrap justify-center ">
                 {postList.map((post) => {
                     return <Post key={post.id} post={post} />;
                 })}

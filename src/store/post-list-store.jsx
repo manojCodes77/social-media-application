@@ -9,7 +9,7 @@ export const PostList = createContext({
 
 const reducer = (state, action) => {
     if (action.type === "ADD_POST") {
-        return [...state, action.payload];
+        return [action.payload,...state];
     } else if (action.type === "ADD_INITIAL_POSTS") {
         return action.payload;
     } else if (action.type === "DELETE_POST") {
